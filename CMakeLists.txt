@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.29)
 project(oculus)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(BOOST_INCLUDE_LIBRARIES "process")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(BOOST_INCLUDE_LIBRARIES "process;interprocess")
 
 
 include(cmake/CPM.cmake)
@@ -15,5 +17,5 @@ CPMAddPackage(
 
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} simdjson::simdjson Boost::process)
+target_link_libraries(${CMAKE_PROJECT_NAME} simdjson::simdjson Boost::process Boost::interprocess)
 
