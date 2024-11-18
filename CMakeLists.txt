@@ -8,7 +8,11 @@ set(BOOST_INCLUDE_LIBRARIES "process;interprocess")
 
 
 include(cmake/CPM.cmake)
-CPMAddPackage("gh:simdjson/simdjson@3.10.1")
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+CPMAddPackage(
+    NAME nlohmann_json
+    GITHUB_REPOSITORY nlohmann/json
+    VERSION 3.9.1)
 
 CPMAddPackage(
     NAME Boost
@@ -17,5 +21,5 @@ CPMAddPackage(
 
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} simdjson::simdjson Boost::process Boost::interprocess)
+target_link_libraries(${CMAKE_PROJECT_NAME} nlohmann_json::nlohmann_json Boost::process Boost::interprocess)
 
